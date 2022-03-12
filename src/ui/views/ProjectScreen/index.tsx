@@ -1,61 +1,61 @@
 import React, { useState, useEffect } from "react";
-import { Field } from "../../../models/Field";
+import { Params, useParams } from "react-router-dom";
+import {
+  getFieldData,
+  getTableData,
+} from "../../../service/ApiService/TableDataApi";
 
 export default function ProjectScreen() {
-  const[datas, SetData] = useState<any[]>([]);
-  const[fields, SetFields] = useState<any[]>([]);
+  const [datas, SetData] = useState<any[]>([]);
+  const [fields, SetFields] = useState<any[]>([]);
+  const name: Readonly<Params<string>> = useParams();
 
-  const GetData = async() => {
-    const response = await fetch(
-      "https://f66b-103-37-201-178.ngrok.io/table/soc"
-    );
-    const data = await response.json();
-    console.log(data)
+  const GetData = async () => {
+    const data = await getTableData(name.name!);
+    console.log(data);
     SetData(data);
   };
 
-  const GetFields = async() => {
-    const response = await fetch(
-      "https://f66b-103-37-201-178.ngrok.io/fields/soc"
-    );
-    const data = await response.json();
+  const GetFields = async () => {
+    const data = await getFieldData(name.name!);
+    console.log(data);
     SetFields(data);
   };
 
   useEffect(() => {
+    console.log(name.name);
     GetData();
     GetFields();
   }, []);
 
-  const fieldArr:string[] = [];
+  const fieldArr: string[] = [];
 
-  const TableHead = fields.map((info)=>{
+  const TableHead = fields.map((info) => {
     fieldArr.push(info.fieldSlug);
-    return(
+    return (
       <td>
-          <th>{info.displayName}</th>
+        <th>{info.displayName}</th>
       </td>
-  )});
+    );
+  });
 
-  const DisplayData = datas.map((info)=>{
-    return(
+  const DisplayData = datas.map((info) => {
+    return (
       <tr>
-      {fieldArr.map((el)=><td>{info[el]}</td>)}
+        {fieldArr.map((el) => (
+          <td>{info[el]}</td>
+        ))}
       </tr>
-  )});
+    );
+  });
 
   return (
     <div className="ProjectScreen">
-       <div>
-          <table className="table table-striped">
-              <thead>
-                  {TableHead}
-              </thead>
-              <tbody>    
-                  {DisplayData}                  
-              </tbody>
-          </table>
-           
+      <div>
+        <table className="table table-striped">
+          <thead>{TableHead}</thead>
+          <tbody>{DisplayData}</tbody>
+        </table>
       </div>
     </div>
   );
