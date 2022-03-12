@@ -6,6 +6,7 @@ import ProjectScreen from "./ui/views/ProjectScreen";
 import EventsScreen from "./ui/views/EventsScreen";
 
 const App: React.FC = () => {
+
   return (
     <div className="App">
       <BrowserRouter>
