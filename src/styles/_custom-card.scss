@@ -1,0 +1,18 @@
+.custom-card {
+  border: 2px solid black;
+  aspect-ratio: 1;
+  width: 10%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-card-title {
+  font: {
+    size: 1.2rem;
+  }
+  color: #262626;
+  margin: auto;
+}

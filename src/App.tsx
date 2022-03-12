@@ -1,11 +1,19 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import UploadScreen from "./ui/views/UploadScreen";
+import ProjectScreen from "./ui/views/ProjectScreen";
+import EventsScreen from "./ui/views/EventsScreen";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <UploadScreen />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<EventsScreen />} />
+          <Route path="/project" element={<ProjectScreen />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };

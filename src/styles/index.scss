@@ -1,0 +1,17 @@
+@import "custom-card";
+@import "events-screen";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font: {
+    family: "Lato";
+    style: normal;
+    weight: bold;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
