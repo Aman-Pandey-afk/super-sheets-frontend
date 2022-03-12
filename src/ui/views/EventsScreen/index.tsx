@@ -5,6 +5,7 @@ import CardComponent from "../../components/Card";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 const EventsScreen: React.FC = () => {
   const [file, setFile] = useState<File>();
@@ -43,7 +44,9 @@ const EventsScreen: React.FC = () => {
       <p className="events-header">Events</p>
       <div className="card-container">
         {projects.map((project) => (
-          <CardComponent title={loading ? "loading.." : project} />
+          <Link to={`/project/${project}`}>
+            <CardComponent title={loading ? "loading.." : project} />
+          </Link>
         ))}
         <button className="add-events-button" onClick={() => setShow(!show)}>
           Add Event
